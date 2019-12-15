@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CarAI : MonoBehaviour
 {
+    private static readonly float DestroyDistance = 20.0f;
+
     public float MinVelocity;
     public float MaxVelocity;
     public float MinSteeringVelocity;
@@ -24,7 +26,6 @@ public class CarAI : MonoBehaviour
 
     void Update()
     {
-        /// TODO: Steering  
         if(steeringTimer >= nextSteeringTimer)
         {
             GenerateNextSteeringTimer();
@@ -32,6 +33,8 @@ public class CarAI : MonoBehaviour
             steeringTimer = 0.0f;
         }
         steeringTimer += Time.deltaTime;
+        if ((transform.position.z + DestroyDistance) < CarCharacter.transform.position.z)
+            Destroy(gameObject);
     }
 
     private void ConfigureEngine()
@@ -47,7 +50,13 @@ public class CarAI : MonoBehaviour
 
     private CarEngineStateSteering.SteeringDirection RandomDirection()
     {
-        return Random.value > 0.5f ? CarEngineStateSteering.SteeringDirection.LEFT : CarEngineStateSteering.SteeringDirection.RIGHT;
+        int lane = engine.GetLaneNumber();
+        if (lane == PathSpawner.LaneCount - 1)
+            return CarEngineStateSteering.SteeringDirection.LEFT;
+        else if (lane == 0)
+            return CarEngineStateSteering.SteeringDirection.RIGHT;
+        else
+            return Random.value > 0.5f ? CarEngineStateSteering.SteeringDirection.LEFT : CarEngineStateSteering.SteeringDirection.RIGHT;
     }
 
     private float Velocity { get => Random.Range(MinVelocity, MaxVelocity); }

@@ -1,10 +1,10 @@
-﻿using Assets._Outrun.Components.CarEngineState;
+﻿using Assets._Outrun.Components;
+using Assets._Outrun.Components.CarEngineState;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.WSA.Input;
 
-public class InputCharacterController : MonoBehaviour
+public class InputCharacterController : MonoBehaviour, IResetable
 {
     public CarEngine CarEngine;
 
@@ -67,4 +67,8 @@ public class InputCharacterController : MonoBehaviour
         CarEngine.SetSteering(direction);
     }
 
+    public void Reset()
+    {
+        enabled = !enabled;
+    }
 }

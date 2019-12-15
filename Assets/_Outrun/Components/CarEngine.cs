@@ -1,25 +1,30 @@
-﻿using Assets._Outrun.Components.CarEngineState;
+﻿using Assets._Outrun.Components;
+using Assets._Outrun.Components.CarEngineState;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarEngine : MonoBehaviour
+public class CarEngine : MonoBehaviour, IResetable
 {
     public static readonly int LaneCount = 5;
     public static readonly float LaneWidth = 4.0f;
 
     public float Velocity;
     public float SteeringVelocity;
+    public float startingPoint;
 
     private float velocity;
     private Vector3 direction;
     private ICarEngineState state;
+    private bool firstTime;
 
     void Start()
     {
         this.direction = new Vector3(0.0f, 0.0f, 1.0f);
         this.velocity = Velocity;
+        startingPoint = 0.0f;
+        firstTime = true;
         SetRunning();
     }
 
@@ -36,12 +41,7 @@ public class CarEngine : MonoBehaviour
         return (direction == CarEngineStateSteering.SteeringDirection.LEFT && lane != 0) ||
             (direction == CarEngineStateSteering.SteeringDirection.RIGHT && lane != 4);
     }
-
-    private int GetLaneNumber()
-    {
-        return Convert.ToInt32(transform.position.x / LaneWidth) + (LaneCount / 2);
-    }
-
+        
     internal void SwitchState(ICarEngineState state)
     {
         this.state = state;
@@ -53,6 +53,10 @@ public class CarEngine : MonoBehaviour
         this.Velocity = runningVelocity;
         this.SteeringVelocity = steeringVelocity;
         SetRunning();
+    }
+    public int GetLaneNumber()
+    {
+        return Convert.ToInt32(transform.position.x / LaneWidth) + (LaneCount / 2);
     }
 
     public Vector3 Direction
@@ -70,6 +74,8 @@ public class CarEngine : MonoBehaviour
             return velocity * direction.z;
         }
     }
+
+    public int DistanceTraveled { get => Convert.ToInt32(transform.position.z - startingPoint); }
 
     public void SetVelocity(float velocity)
     {
@@ -95,5 +101,15 @@ public class CarEngine : MonoBehaviour
                 ((CarEngineStateSteering)state).Queue(new CarEngineStateSteering(direction));
     }
 
+    public void Reset()
+    {
+        if (!firstTime)
+        {
+            enabled = !enabled;
+        }
+        else
+            firstTime = false;
+        startingPoint = transform.position.z;
+    }
 
 }

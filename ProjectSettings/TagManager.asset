@@ -3,7 +3,27 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - LeftBarrier
+  - RightLand
+  - Path
+  - RightBarrier
+  - LeftLand
+  - LeftLamp
+  - Gold
+  - Obstacle
+  - Car
+  - Lane
+  - RightLamp
+  - GameEnvironment
+  - ObstacleSpawner
+  - CarCharacter
+  - PathManager
+  - RestartButton
+  - PlayButton
+  - Track
+  - Canvas
+  - MainLight
   layers:
   - Default
   - TransparentFX
