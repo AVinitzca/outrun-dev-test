@@ -68,6 +68,8 @@
     <Compile Include="Assets\_Outrun\Components\CarEngineState\CarEngineStateSteering.cs" />
     <Compile Include="Assets\_Outrun\Components\CarEngineState\ICarEngineState.cs" />
     <Compile Include="Assets\_Outrun\Components\CharacterCollision.cs" />
+    <Compile Include="Assets\_Outrun\Components\DistanceListener.cs" />
+    <Compile Include="Assets\_Outrun\Components\GameOverSequence.cs" />
     <Compile Include="Assets\_Outrun\Components\GoldSpawner.cs" />
     <Compile Include="Assets\_Outrun\Components\InputCharacterController.cs" />
     <Compile Include="Assets\_Outrun\Components\IResetable.cs" />
@@ -75,16 +77,14 @@
     <Compile Include="Assets\_Outrun\Components\MaxScoreListener.cs" />
     <Compile Include="Assets\_Outrun\Components\NavigationTransition.cs" />
     <Compile Include="Assets\_Outrun\Components\ObjectFollower.cs" />
+    <Compile Include="Assets\_Outrun\Components\ObjectToggler.cs" />
     <Compile Include="Assets\_Outrun\Components\ObstacleCarSpawner.cs" />
     <Compile Include="Assets\_Outrun\Components\PathSpawner.cs" />
     <Compile Include="Assets\_Outrun\Components\PlayTransition.cs" />
+    <Compile Include="Assets\_Outrun\Components\RestartTransition.cs" />
     <Compile Include="Assets\_Outrun\Components\ScoreListener.cs" />
     <Compile Include="Assets\_Outrun\Components\ToggleButton.cs" />
     <Compile Include="Assets\_Outrun\System\GameManager.cs" />
-    <Compile Include="Assets\DistanceListener.cs" />
-    <Compile Include="Assets\GameOverSequence.cs" />
-    <Compile Include="Assets\ObjectToggler.cs" />
-    <Compile Include="Assets\RestartTransition.cs" />
     <None Include="Assets\_Outrun\Shaders\CurvedWorld.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>A:/Ronan/Projects/outrun_dev_challenge/Outrun Challenge/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
